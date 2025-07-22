@@ -78,7 +78,7 @@ const Contact = () => {
             <h3 className="text-xl font-semibold mb-1">LinkedIn</h3>
             <p className="text-gray-300">
               <a
-                href="www.linkedin.com/in/vishmithsuranjaya"
+                href="https://www.linkedin.com/in/vishmithsuranjaya/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
