@@ -11,8 +11,6 @@ import Navbar from "../Components/Navbar/Navbar";
 const Contact = () => {
   return (
     <div className="bg-[#0f172a] text-white min-h-screen">
-      <Navbar />
-
       {/* Freelancing Banner */}
       <section className="py-20 bg-[#1e293b] text-center px-4">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">

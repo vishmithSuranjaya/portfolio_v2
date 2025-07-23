@@ -7,6 +7,7 @@ import Home from './Pages/Home'
 import Projects from './Pages/Projects'
 import Certifications from './Pages/Certifications'
 import Contact from './Pages/Contact'
+import Navbar from './Components/Navbar/Navbar'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,6 +15,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+      <Navbar />
         <Routes>
           <Route path={'/'} element={<Home />} />
           <Route path={'/projects'} element={<Projects />} />

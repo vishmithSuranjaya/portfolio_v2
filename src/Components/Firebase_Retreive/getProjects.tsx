@@ -1,7 +1,7 @@
 // lib/getProjects.ts (or .js if you're not using TS)
 
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase/firebase";
+import { db } from "../../firebase";
 
 type Project = {
   id: string; // 
