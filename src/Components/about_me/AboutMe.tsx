@@ -21,8 +21,8 @@ const AboutMe = () => {
             and firmly believe that <span className="italic">nothing is impossible</span>.
             With a strong interest in software development, I enjoy building meaningful digital experiences where 
             creativity meets functionality. I’m deeply intrigued by technologies like 
-            <span className="text-emerald-400 font-medium"> Next.js</span> and 
-            <span className="text-emerald-400 font-medium"> Flutter</span>, and I’m always striving to grow — not just as a developer, but as a thinker.
+            <span className="text-emerald-400 font-medium"> React.js</span> and 
+            <span className="text-emerald-400 font-medium"> Python and Next.js</span>, and I’m always striving to grow — not just as a developer, but as a thinker.
             <br /><br />
             Overthinking may be my habit, but I see it as a strength that lets me design with intention. As I journey forward, 
             I live by my motto: <span className="text-pink-400 font-semibold">&lt;/&gt; push -ur limits</span> — because growth begins where comfort ends.
