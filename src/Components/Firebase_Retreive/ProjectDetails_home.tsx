@@ -65,7 +65,6 @@ const ProjectsDetails = ({ setLoading }: { setLoading?: (loading: boolean) => vo
                 >
                   <div className="flex-grow text-white"> {/* Text content below the image */}
                     <h2 className="text-lg font-bold mb-1">{project.title}</h2>
-                    {/* <p className="text-sm text-gray-200 line-clamp-2">{project.description1}</p> line-clamp for description */}
                   </div>
                   <div className="flex-shrink-0 mb-4 h-2/3 overflow-hidden rounded-lg"> {/* Container for the image */}
                     <img
@@ -75,7 +74,6 @@ const ProjectsDetails = ({ setLoading }: { setLoading?: (loading: boolean) => vo
                     />
                   </div>
                   <div className="flex-grow text-white"> {/* Text content below the image */}
-                    <h2 className="text-lg font-bold mb-1">{project.title}</h2>
                     <p className="text-sm text-gray-200 line-clamp-2">{project.description1}</p> {/* line-clamp for description */}
                   </div>
                 </div>
