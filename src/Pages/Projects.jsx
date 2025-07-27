@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import ProjectTile from '../Components/Tile/ProjectTile';
-import Navbar from '../Components/Navbar/Navbar';
+import Navbar from '../Components/Navbar/Navbar'; // Assuming Navbar is used elsewhere
 
 const ProjectsDetails = ({ setLoading }) => {
   const [projects, setProjects] = useState([]);
@@ -37,10 +37,10 @@ const ProjectsDetails = ({ setLoading }) => {
     Array.from({ length: 6 }).map((_, idx) => (
       <div
         key={idx}
-        className="h-64 rounded-xl bg-gray-800 animate-pulse shadow-lg"
+        className="h-64 rounded-xl bg-gray-800 animate-pulse shadow-lg p-4 flex flex-col"
       >
-        <div className="h-2/3 bg-gray-700 rounded-t-xl"></div>
-        <div className="p-4">
+        <div className="h-2/3 bg-gray-700 rounded-lg mb-4"></div>
+        <div className="flex-grow">
           <div className="h-4 bg-gray-600 w-3/4 mb-2 rounded"></div>
           <div className="h-3 bg-gray-600 w-2/3 rounded"></div>
         </div>
@@ -61,17 +61,21 @@ const ProjectsDetails = ({ setLoading }) => {
               : projects.map((project) => (
                   <div
                     key={project.id}
-                    className="relative h-64 rounded-xl overflow-hidden shadow-lg group cursor-pointer"
+                    className="relative h-100 rounded-xl overflow-hidden shadow-lg group cursor-pointer bg-[#1e293b] p-4 flex flex-col"
                     onClick={() => setSelectedProject(project)}
-                    style={{
-                      backgroundImage: `linear-gradient(to top, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.3)), url(${project.media1})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                    }}
                   >
-                    <div className="absolute bottom-0 p-4 w-full text-white bg-gradient-to-t from-[#0f172a]/90 to-transparent">
-                      <h2 className="text-lg font-bold">{project.title}</h2>
-                      <p className="text-sm text-gray-200">{project.description1}</p>
+                    <div className="flex-grow text-white">
+                      <h2 className="text-lg font-bold mb-1">{project.title}</h2>
+                    </div>
+                    <div className="flex-shrink-0 mb-4 h-2/3 overflow-hidden rounded-lg">
+                      <img
+                        src={project.media1}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="flex-grow text-white">
+                      <p className="text-sm text-gray-200 line-clamp-2">{project.description1}</p>
                     </div>
                   </div>
                 ))}

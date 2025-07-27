@@ -39,10 +39,10 @@ const ProjectsDetails = ({ setLoading }: { setLoading?: (loading: boolean) => vo
     Array.from({ length: 3 }).map((_, idx) => (
       <div
         key={idx}
-        className="h-64 rounded-xl bg-gray-800 animate-pulse shadow-lg"
+        className="h-64 rounded-xl bg-gray-800 animate-pulse shadow-lg p-4" // Added p-4 for padding
       >
-        <div className="h-2/3 bg-gray-700 rounded-t-xl"></div>
-        <div className="p-4">
+        <div className="h-2/3 bg-gray-700 rounded-lg mb-2"></div> {/* Adjusted for direct image */}
+        <div className="p-2"> {/* Added padding for text below image */}
           <div className="h-4 bg-gray-600 w-3/4 mb-2 rounded"></div>
           <div className="h-3 bg-gray-600 w-2/3 rounded"></div>
         </div>
@@ -60,17 +60,23 @@ const ProjectsDetails = ({ setLoading }: { setLoading?: (loading: boolean) => vo
             : projects.map((project) => (
                 <div
                   key={project.id}
-                  className="relative h-64 rounded-xl overflow-hidden shadow-lg group cursor-pointer"
+                  className="relative h-100 rounded-xl overflow-hidden shadow-lg group cursor-pointer bg-[#1e293b] p-4 flex flex-col" // Added bg color, padding, and flex for layout
                   onClick={() => setSelectedProject(project)}
-                  style={{
-                    backgroundImage: `linear-gradient(to top, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.3)), url(${project.media1})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                  }}
                 >
-                  <div className="absolute bottom-0 p-4 w-full text-white bg-gradient-to-t from-[#0f172a]/90 to-transparent">
-                    <h2 className="text-lg font-bold">{project.title}</h2>
-                    <p className="text-sm text-gray-200">{project.description1}</p>
+                  <div className="flex-grow text-white"> {/* Text content below the image */}
+                    <h2 className="text-lg font-bold mb-1">{project.title}</h2>
+                    {/* <p className="text-sm text-gray-200 line-clamp-2">{project.description1}</p> line-clamp for description */}
+                  </div>
+                  <div className="flex-shrink-0 mb-4 h-2/3 overflow-hidden rounded-lg"> {/* Container for the image */}
+                    <img
+                      src={project.media1}
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" // Image styles
+                    />
+                  </div>
+                  <div className="flex-grow text-white"> {/* Text content below the image */}
+                    <h2 className="text-lg font-bold mb-1">{project.title}</h2>
+                    <p className="text-sm text-gray-200 line-clamp-2">{project.description1}</p> {/* line-clamp for description */}
                   </div>
                 </div>
               ))}
