@@ -18,7 +18,7 @@ const AboutMe = () => {
           <p className="text-sm sm:text-base md:text-lg leading-relaxed max-w-xl">
             👋 Greetings! I am a passionate and curious Computer Science undergraduate following 
             <span className="text-cyan-400 font-semibold"> BSc. (Hons) in Computer Science and Technology </span> 
-            and firmly believe that <span className="italic">nothing is impossible</span>.
+            and firmly believe that <span className="italic text-pink-400 font-semibold">nothing is impossible</span>.
             With a strong interest in software development, I enjoy building meaningful digital experiences where 
             creativity meets functionality. I’m deeply intrigued by technologies like 
             <span className="text-emerald-400 font-medium"> React.js</span> and 
