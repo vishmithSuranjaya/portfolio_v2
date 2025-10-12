@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import emailjs from "emailjs-com";
+import toast, { Toaster } from "react-hot-toast";
 
 const Email_form = () => {
   const form = useRef();
@@ -8,6 +9,7 @@ const Email_form = () => {
   const sendEmail = (e) => {
     e.preventDefault();
     setStatus("Sending...");
+    const loadingToast = toast.loading("Sending message...");
 
     emailjs
       .sendForm(
@@ -21,16 +23,31 @@ const Email_form = () => {
           console.log(result.text);
           setStatus("Message sent successfully!");
           form.current.reset();
+          toast.dismiss(loadingToast); // remove loading
+          toast.success("Message sent successfully!");
         },
         (error) => {
           console.log(error.text);
           setStatus("Failed to send message. Please try again later.");
+          toast.dismiss(loadingToast);
+          toast.error("Failed to send message. Please try again later.");
         }
       );
   };
 
   return (
     <div className="bg-[#1e293b] p-8 rounded-xl shadow-lg max-w-2xl mx-auto mt-10">
+        <Toaster
+        position="top-right" 
+        reverseOrder={false} 
+        toastOptions={{
+          style: {
+            background: "#1e293b",
+            color: "#ffffff",
+            fontWeight: "500",
+          },
+        }}
+      />
       <h3 className="text-2xl font-bold mb-6 text-center">Send Me a Message</h3>
       <form ref={form} onSubmit={sendEmail} className="space-y-4">
         <input
@@ -61,9 +78,7 @@ const Email_form = () => {
           Send Message
         </button>
       </form>
-      {status && (
-        <p className="text-center text-sm mt-4 text-gray-300">{status}</p>
-      )}
+      
     </div>
   );
 };
