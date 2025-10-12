@@ -6,11 +6,12 @@ import {
   FaGithub,
   FaLinkedin,
 } from "react-icons/fa";
-import Navbar from "../Components/Navbar/Navbar";
+import Email_form from "../Components/Email_form/Email_form";
 
 const Contact = () => {
   return (
     <div className="bg-[#0f172a] text-white min-h-screen">
+
       {/* Freelancing Banner */}
       <section className="py-20 bg-[#1e293b] text-center px-4">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -51,7 +52,9 @@ const Contact = () => {
             <FaEnvelope className="text-3xl text-yellow-400 mx-auto mb-3" />
             <h3 className="text-xl font-semibold mb-1">Email</h3>
             <p className="text-gray-300">
-              <a href="mailto:yourname@email.com">suranjaya0327@gmail.com</a>
+              <a href="mailto:suranjaya0327@gmail.com">
+                suranjaya0327@gmail.com
+              </a>
             </p>
           </div>
 
@@ -85,6 +88,9 @@ const Contact = () => {
             </p>
           </div>
         </div>
+
+        {/* ✅ New Contact Form Section */}
+        <Email_form />
       </section>
 
       <p className="text-sm text-gray-400 text-center mt-8">
