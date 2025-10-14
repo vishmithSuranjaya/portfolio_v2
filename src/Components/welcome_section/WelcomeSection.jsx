@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const WelcomeSection = () => {
   return (
@@ -14,12 +15,12 @@ const WelcomeSection = () => {
           <p className="text-gray-300 mb-8 text-lg animate-fadeInSlideUp animation-delay-400"> {/* Add another delay */}
             Nothing is impossible ...
           </p>
-          <a
-            href="#contact"
-            className="inline-block bg-yellow-400 text-[#0f172a] font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-yellow-300 transition duration-300 animate-scaleIn animation-delay-600"
+          <Link
+           to='contact'
+           className="inline-block bg-yellow-400 text-[#0f172a] font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-yellow-300 transition duration-300 animate-scaleIn animation-delay-600"
           >
-            Hire Me
-          </a>
+             Hire Me
+          </Link>
         </div>
       </div>
     </section>

@@ -10,7 +10,7 @@ import Email_form from "../Components/Email_form/Email_form";
 
 const Contact = () => {
   return (
-    <div className="bg-[#0f172a] text-white min-h-screen">
+    <div className="bg-[#0f172a] text-white ">
 
       {/* 📌 Freelancing Banner — Enhanced */}
       <section className="py-20 bg-gradient-to-r from-[#1e293b] to-[#111827] text-center px-4">
@@ -24,7 +24,7 @@ const Contact = () => {
       </section>
 
       {/* 📌 Contact Info Section — Added subtle hover effects */}
-      <section id="contact" className="py-20 px-6">
+      <section id="contact" className="py-5 px-6">
         <div className="text-center mb-12">
           <h1 className="text-6xl font-extrabold text-gray-700 opacity-10">
             Contact
@@ -93,7 +93,7 @@ const Contact = () => {
       </section>
 
       {/* Footer */}
-      <p className="text-sm text-gray-400 text-center mt-12 mb-6">
+      <p className="text-sm text-gray-400 text-center mt-12 p-6">
         © 2025 Vishmith Suranjaya. All Rights Reserved.
       </p>
     </div>

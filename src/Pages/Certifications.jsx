@@ -142,7 +142,7 @@ const Certifications = ({ setLoading }) => {
         </div>
       </div>
 
-      <footer className="text-sm text-gray-400 text-center py-4">
+      <footer className="text-sm text-gray-400 text-center p-6">
         © 2025 Vishmith Suranjaya. All Rights Reserved.
       </footer>
     </div>
