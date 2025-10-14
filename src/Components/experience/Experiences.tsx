@@ -84,7 +84,7 @@ const Experiences = () => {
             download="Vishmith_Suranjaya_CV.pdf"
             className="my-1 flex items-center gap-2 px-6 py-2 bg-yellow-400 text-white border border-white rounded-full transition-all hover:bg-gray-200 hover:text-black hover:border border-black"
           >
-            Download CV
+            Download
           </a>
         </div>
       </div>
