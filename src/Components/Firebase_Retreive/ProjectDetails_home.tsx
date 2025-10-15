@@ -70,7 +70,7 @@ const ProjectsDetails = ({ setLoading }: { setLoading?: (loading: boolean) => vo
                     <img
                       src={project.media1}
                       alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" // Image styles
+                      className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105" // Image styles
                     />
                   </div>
                   <div className="flex-grow text-white"> {/* Text content below the image */}

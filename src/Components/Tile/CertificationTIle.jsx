@@ -22,7 +22,7 @@ const CertificationTile = ({ project, onClose }) => {
           <img
             src={project.image}
             alt={project.title || "certification image"}
-            className="w-full h-64 object-cover rounded-lg mb-6"
+            className="w-full h-64 object-contain rounded-lg mb-6"
           />
         )}
 
