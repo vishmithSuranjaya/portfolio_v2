@@ -16,19 +16,38 @@ const Navbar = () => {
 
   return (
     <nav className="w-full bg-[#0f172a] text-white font-sans font-bold shadow-lg">
+      {/* 🔹 FIX: use items-center to align vertically AND a smaller text size to match links */}
       <div className="flex justify-between items-center px-8 py-4">
-        {/* Logo */}
-        <div className="text-5xl font-extrabold tracking-wide text-white">VS</div>
 
-        {/* Hamburger Icon (Mobile) */}
+        {/* LOGO */}
+        <div
+          className="flex items-center text-5xl font-extrabold 
+                     bg-gradient-to-r from-red-500 via-orange-400 via-yellow-300 via-green-400 via-cyan-400 via-blue-500 via-purple-500 to-red-500
+                     bg-[length:400%_100%] bg-clip-text text-transparent
+                     animate-[rainbow_6s_linear_infinite] leading-none select-none"
+        >
+          VS
+          <style jsx>{`
+            @keyframes rainbow {
+              0% {
+                background-position: 0% 50%;
+              }
+              100% {
+                background-position: 400% 50%;
+              }
+            }
+          `}</style>
+        </div>
+
+        {/* HAMBURGER (Mobile) */}
         <div className="md:hidden">
           <button onClick={toggleMenu} aria-label="Toggle Menu">
             {menuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
           </button>
         </div>
 
-        {/* Nav Links (Desktop) */}
-        <div className="hidden md:flex space-x-8 text-xl">
+        {/* NAV LINKS (Desktop) */}
+        <div className="hidden md:flex space-x-8 text-xl items-center">
           <Link to="/" className={linkClass('/')}>Home</Link>
           <Link to="/projects" className={linkClass('/projects')}>Projects</Link>
           <Link to="/certifications" className={linkClass('/certifications')}>Certifications</Link>
@@ -36,9 +55,9 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu - centered horizontally & vertically */}
+      {/* MOBILE MENU */}
       {menuOpen && (
-        <div className="md:hidden px-8  space-y-6 text-lg flex flex-col items-center  h-50">
+        <div className="md:hidden px-10 space-y-6 text-lg flex flex-col items-center">
           <Link to="/" onClick={closeMenu} className={linkClass('/')}>Home</Link>
           <Link to="/projects" onClick={closeMenu} className={linkClass('/projects')}>Projects</Link>
           <Link to="/certifications" onClick={closeMenu} className={linkClass('/certifications')}>Certifications</Link>
