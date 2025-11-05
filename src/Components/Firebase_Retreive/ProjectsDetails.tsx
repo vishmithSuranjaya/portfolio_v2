@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { getProjects } from "../../firebase/getProjects";
+import { getProjects } from "./getProjects"
 import HoverCard from "../hoverCard/HoverCard";
 
 export default function ProjectsDetails() {
@@ -14,6 +14,7 @@ export default function ProjectsDetails() {
     media3: string;
     media4: string;
     tech_stack: string[];
+    url: string;
   }[]>([]);
 
   useEffect(() => {

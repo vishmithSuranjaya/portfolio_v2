@@ -48,6 +48,25 @@ const ProjectTile = ({ project, onClose }) => {
             </div>
           </>
         )}
+        <a
+  href={project.url}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center gap-2 px-5 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-all duration-300"
+>
+  Visit Project
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={2}
+    stroke="currentColor"
+    className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12l-3.75 3.75M21 12H3" />
+  </svg>
+</a>
+
       </div>
     </div>
   );

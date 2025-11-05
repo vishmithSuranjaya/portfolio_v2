@@ -13,6 +13,7 @@ type Project = {
   media3: string;
   media4: string;
   tech_stack: string[];
+  url: string;
 };
 
 export default function HoverCard({ project }: { project: Project }) {
@@ -80,12 +81,13 @@ export default function HoverCard({ project }: { project: Project }) {
     <h6 key={index} >
       {tech}
     </h6>
+    <h6>{project.url}</h6>
     </div>
   ))}
 </div>
 
       <a
-        href={project.media1}
+        href={project.url}
         target="_blank"
         rel="noopener noreferrer"
         className="text-blue-400 hover:underline mt-2 text-sm"

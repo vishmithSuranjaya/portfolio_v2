@@ -13,6 +13,7 @@ type Project = {
   media3: string;
   media4: string;
   tech_stack: string[];
+  url: string;
 };
 
 export const getProjects = async (): Promise<Project[]> => {
