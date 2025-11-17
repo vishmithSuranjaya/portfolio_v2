@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import ProjectTile from '../Tile/ProjectTile';
 import { getProjects } from './getProjects';
+import ProjectCard from './ProjectCard';
 
 interface Project {
   id: string;
@@ -39,12 +41,13 @@ const ProjectsDetails = ({ setLoading }: { setLoading?: (loading: boolean) => vo
     Array.from({ length: 3 }).map((_, idx) => (
       <div
         key={idx}
-        className="h-64 rounded-xl bg-gray-800 animate-pulse shadow-lg p-4" // Added p-4 for padding
+        className="rounded-xl bg-gray-800 animate-pulse shadow-lg overflow-hidden"
       >
-        <div className="h-2/3 bg-gray-700 rounded-lg mb-2"></div> {/* Adjusted for direct image */}
-        <div className="p-2"> {/* Added padding for text below image */}
-          <div className="h-4 bg-gray-600 w-3/4 mb-2 rounded"></div>
-          <div className="h-3 bg-gray-600 w-2/3 rounded"></div>
+        <div className="h-44 bg-gray-700 w-full"></div>
+        <div className="p-4">
+          <div className="h-4 bg-gray-600 w-3/4 mb-3 rounded"></div>
+          <div className="h-3 bg-gray-600 w-5/6 mb-2 rounded"></div>
+          <div className="h-3 bg-gray-600 w-1/2 rounded"></div>
         </div>
       </div>
     ));
@@ -54,30 +57,29 @@ const ProjectsDetails = ({ setLoading }: { setLoading?: (loading: boolean) => vo
   return (
     <div className="bg-[#0f172a] p-5">
       <div className="flex-grow relative m-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+        {/* Projects Title */}
+        <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 text-center">My Projects</h2>
+
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 items-stretch">
           {loadingState
             ? renderSkeleton()
             : projects.map((project) => (
-                <div
+                <ProjectCard
                   key={project.id}
-                  className="relative h-100 rounded-xl overflow-hidden shadow-lg group cursor-pointer bg-[#1e293b] p-4 flex flex-col" // Added bg color, padding, and flex for layout
-                  onClick={() => setSelectedProject(project)}
-                >
-                  <div className="flex-grow text-white"> {/* Text content below the image */}
-                    <h2 className="text-lg font-bold mb-1">{project.title}</h2>
-                  </div>
-                  <div className="flex-shrink-0 mb-4 h-2/3 overflow-hidden rounded-lg"> {/* Container for the image */}
-                    <img
-                      src={project.media1}
-                      alt={project.title}
-                      className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105" // Image styles
-                    />
-                  </div>
-                  <div className="flex-grow text-white"> {/* Text content below the image */}
-                    <p className="text-sm text-gray-200 line-clamp-2">{project.description1}</p> {/* line-clamp for description */}
-                  </div>
-                </div>
+                  project={project}
+                  onView={() => setSelectedProject(project)}
+                />
               ))}
+        </div>
+
+        {/* View All Projects Button */}
+        <div className="flex justify-center mt-12">
+          <Link
+            to="/projects"
+            className="inline-block bg-yellow-400 text-[#0f172a] font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-yellow-300 transition duration-300 italic"
+          >
+            View All Projects →
+          </Link>
         </div>
 
         {selectedProject && (

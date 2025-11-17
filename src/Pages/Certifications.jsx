@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import Navbar from '../Components/Navbar/Navbar'; // Assuming Navbar is used elsewhere
+import CertificationCard from '../Components/Firebase_Retreive/CertificationCard';
 
 const Certifications = ({ setLoading }) => {
   const [certifications, setCertifications] = useState([]); // Renamed from 'projects' for clarity
@@ -53,29 +54,15 @@ const Certifications = ({ setLoading }) => {
     <div className="bg-[#0f172a] min-h-screen flex flex-col">
       <div className="flex-grow p-5">
         <div className="relative m-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 items-stretch">
             {loadingState
               ? renderSkeleton()
-              : certifications.map((certification) => ( // Mapped over 'certifications'
-                  <div
+              : certifications.map((certification) => (
+                  <CertificationCard
                     key={certification.id}
-                    className="relative h-100 rounded-xl overflow-hidden shadow-lg group cursor-pointer bg-[#1e293b] p-4 flex flex-col" // Added bg color, padding, and flex for layout
-                    onClick={() => setSelectedCertification(certification)} // Set to new state variable
-                  >
-                    <div className="flex-shrink-0 mb-4 h-2/3 overflow-hidden rounded-lg"> {/* Container for the image */}
-                      <img
-                        src={certification.image} // Changed from project.media1 to certification.image
-                        alt={certification.title || "Certification Image"} // Alt text for accessibility
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" // Image styles
-                      />
-                    </div>
-                    <div className="flex-grow text-white"> {/* Text content below the image */}
-                      <h2 className="text-lg font-bold mb-1">{certification.title}</h2>
-                      <p className="text-sm text-gray-200 line-clamp-2">
-                        {certification.description1 || certification.description} {/* Use line-clamp */}
-                      </p>
-                    </div>
-                  </div>
+                    certification={certification}
+                    onView={(c) => setSelectedCertification(c)}
+                  />
                 ))}
           </div>
 

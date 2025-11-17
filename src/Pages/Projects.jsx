@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import ProjectTile from '../Components/Tile/ProjectTile';
+import ProjectCard from '../Components/Firebase_Retreive/ProjectCard';
 import Navbar from '../Components/Navbar/Navbar'; // Assuming Navbar is used elsewhere
 
 const ProjectsDetails = ({ setLoading }) => {
@@ -59,26 +60,12 @@ const ProjectsDetails = ({ setLoading }) => {
             {loadingState
               ? renderSkeleton()
               : projects.map((project) => (
-                  <div
-                    key={project.id}
-                    className="relative h-100 rounded-xl overflow-hidden shadow-lg group cursor-pointer bg-[#1e293b] p-4 flex flex-col"
-                    onClick={() => setSelectedProject(project)}
-                  >
-                    <div className="flex-grow text-white">
-                      <h2 className="text-lg font-bold mb-1">{project.title}</h2>
-                    </div>
-                    <div className="flex-shrink-0 mb-4 h-2/3 overflow-hidden rounded-lg">
-                      <img
-                        src={project.media1}
-                        alt={project.title}
-                        className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="flex-grow text-white">
-                      <p className="text-sm text-gray-200 line-clamp-2">{project.description1}</p>
-                    </div>
-                  </div>
-                ))}
+                    <ProjectCard
+                      key={project.id}
+                      project={project}
+                      onView={() => setSelectedProject(project)}
+                    />
+                  ))}
           </div>
 
           {/* Modal Tile Component */}

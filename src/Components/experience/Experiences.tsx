@@ -82,9 +82,9 @@ const Experiences = () => {
           <a
             href="/Vishmith_Suranjaya_CV.pdf"
             download="Vishmith_Suranjaya_CV.pdf"
-            className="my-1 flex items-center gap-2 px-6 py-2 bg-yellow-400 text-white border border-white rounded-full transition-all hover:bg-gray-200 hover:text-black hover:border border-black"
+            className="inline-block bg-yellow-400 text-[#0f172a] font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-yellow-300 transition duration-300 italic"
           >
-            Download
+            Download CV →
           </a>
         </div>
       </div>
