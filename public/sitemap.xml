@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://vishmithsuranjaya.dev/</loc>
+    <lastmod>2025-11-21T13:48:42.312Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://vishmithsuranjaya.dev/projects</loc>
+    <lastmod>2025-11-21T13:48:42.312Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://vishmithsuranjaya.dev/certifications</loc>
+    <lastmod>2025-11-21T13:48:42.312Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://vishmithsuranjaya.dev/contact</loc>
+    <lastmod>2025-11-21T13:48:42.312Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>
