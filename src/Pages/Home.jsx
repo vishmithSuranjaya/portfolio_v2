@@ -11,9 +11,9 @@ const Home = () => {
   return (
     <div className='bg-[#0f172a]'>
       <Helmet>
-        <title>Vishmith Suranjaya — Frontend Engineer</title>
+        <title>VS's Portfolio</title>
         <meta name="description" content="Vishmith Suranjaya — Frontend engineer building accessible React + Tailwind apps. Available for hire." />
-        <meta property="og:title" content="Vishmith Suranjaya — Frontend Engineer" />
+        <meta property="og:title" content="VS's Portfolio" />
         <meta property="og:description" content="Frontend engineer building accessible React + Tailwind apps. Available for hire." />
         <meta property="og:type" content="website" />
         {
