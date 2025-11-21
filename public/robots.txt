@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://vishmithsuranjaya.dev/sitemap.xml
+# Add disallow rules below if you want to hide specific paths from crawlers

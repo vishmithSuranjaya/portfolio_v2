@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async'
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import ProjectTile from '../Components/Tile/ProjectTile';
@@ -53,6 +54,24 @@ const ProjectsDetails = ({ setLoading }) => {
 
   return (
     <div className="bg-[#0f172a] min-h-screen flex flex-col">
+      <Helmet>
+        <title>Projects — Vishmith Suranjaya</title>
+        <meta name="description" content="Selected projects from Vishmith Suranjaya demonstrating React, Tailwind, and Firebase work." />
+        <meta property="og:title" content="Projects — Vishmith Suranjaya" />
+        <meta property="og:description" content="Selected projects demonstrating React, Tailwind, and Firebase work." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${import.meta.env.VITE_SITE_URL || 'https://vishmithsuranjaya.dev'}/projects`} />
+        <meta property="og:image" content={`${import.meta.env.VITE_SITE_URL || 'https://vishmithsuranjaya.dev'}/og-projects.png`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="canonical" href={`${import.meta.env.VITE_SITE_URL || 'https://vishmithsuranjaya.dev'}/projects`} />
+        <script type="application/ld+json">{`{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": "Projects — Vishmith Suranjaya",
+          "description": "Selected projects from Vishmith Suranjaya demonstrating React, Tailwind, and Firebase work.",
+          "url": "${import.meta.env.VITE_SITE_URL || 'https://vishmithsuranjaya.dev'}/projects"
+        }`}</script>
+      </Helmet>
       <main className="flex-grow p-5">
         <div className="relative m-10">
           {/* Grid of Cards */}

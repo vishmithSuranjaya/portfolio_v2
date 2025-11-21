@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
 /**
- * A component that fetches a random programming quote and displays it in a continuous marquee effect.
- * It uses the Programming Quotes API and is accessible (pauses on hover/focus and respects reduced motion).
+ * RunningPhrase
+ * - Fetches a random programming quote from `programming-quotesapi.vercel.app`
+ * - Falls back to a static phrase if the API fails or returns an unexpected shape
+ * - Props: `text` (optional fallback), `speed`, `direction`, `className`
  */
-const DynamicRunningPhrase = ({ 
-    speed = 20, 
-    className = '', 
-    direction = 'left' 
+const RunningPhrase = ({
+    text: fallbackText = "I build clean, accessible UIs — React, Tailwind, Firebase. Let's build something together!",
+    speed = 20,
+    className = '',
+    direction = 'left',
 }) => {
     // State to hold the fetched quote (text and author)
     const [phrase, setPhrase] = useState('Loading daily inspirational quote...');
@@ -29,16 +32,22 @@ const DynamicRunningPhrase = ({
                 }
                 
                 const data = await response.json();
-                
-                // --- Data Validation ---
-                if (!data || typeof data.quote !== 'string' || typeof data.author !== 'string') {
-                    // If data is missing fields or types are wrong, throw to trigger retry/error state
-                    throw new Error('Received invalid or incomplete quote data from API.');
+
+                // DEBUG: log the response shape to console to help troubleshooting
+                // (This will appear in browser devtools; safe to remove later)
+                console.debug('RunningPhrase API response:', data);
+
+                // --- Data Extraction / Validation ---
+                // The API historically returns { en: 'quote text', author: 'Name', id: '...' }
+                // but other services might return { quote: '...', author: '...' }
+                const quoteText = (data && (data.quote || data.en || data.text || data.content)) || null;
+                const quoteAuthor = (data && (data.author || data.by || data.source)) || null;
+
+                if (!quoteText) {
+                    throw new Error('API returned no usable quote text.');
                 }
-                // -----------------------------
-                
-                // Construct the full phrase: "Quote text" — Author Name
-                const fullQuote = `"${data.quote}" — ${data.author}`;
+
+                const fullQuote = quoteAuthor ? `"${quoteText}" — ${quoteAuthor}` : `"${quoteText}"`;
                 setPhrase(fullQuote);
                 setLoading(false);
                 
@@ -166,4 +175,4 @@ const DynamicRunningPhrase = ({
     );
 };
 
-export default DynamicRunningPhrase;
+export default RunningPhrase;
