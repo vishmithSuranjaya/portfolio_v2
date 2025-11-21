@@ -38,9 +38,8 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.16",
     "vite": "^6.3.5"
-  }
+  },
 
-  // added after seo optimization to prevent deployment failur in vercel
   "overrides": {
     "react-helmet-async": {
       "react": "^19.0.0",
