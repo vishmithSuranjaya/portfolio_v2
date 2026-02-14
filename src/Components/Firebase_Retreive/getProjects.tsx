@@ -25,5 +25,5 @@ export const getProjects = async (): Promise<Project[]> => {
     projects.push({ id: doc.id, ...data });
   });
 
-  return projects;
+  return projects.reverse();
 };

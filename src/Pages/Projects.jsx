@@ -22,7 +22,7 @@ const ProjectsDetails = ({ setLoading }) => {
           id: doc.id,
           ...doc.data(),
         }));
-        setProjects(projectsList);
+        setProjects(projectsList.reverse());
       } catch (err) {
         console.error('Error fetching projects:', err);
         setError("Failed to load projects.");
@@ -79,12 +79,12 @@ const ProjectsDetails = ({ setLoading }) => {
             {loadingState
               ? renderSkeleton()
               : projects.map((project) => (
-                    <ProjectCard
-                      key={project.id}
-                      project={project}
-                      onView={() => setSelectedProject(project)}
-                    />
-                  ))}
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  onView={() => setSelectedProject(project)}
+                />
+              ))}
           </div>
 
           {/* Modal Tile Component */}
