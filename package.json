@@ -39,7 +39,6 @@
     "tailwindcss": "^4.1.16",
     "vite": "^6.3.5"
   },
-
   "overrides": {
     "react-helmet-async": {
       "react": "^19.0.0",

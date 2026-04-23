@@ -36,6 +36,14 @@ const Experiences = () => {
             alt="PHP"
           />
           <img
+            src="https://img.shields.io/badge/laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white"
+            alt="Laravel"
+          />
+          <img
+            src="https://img.shields.io/badge/livewire-%2306B6D4.svg?style=for-the-badge&logo=livewire&logoColor=white"
+            alt="Livewire"
+          />
+          <img
             src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54"
             alt="Python"
           />
