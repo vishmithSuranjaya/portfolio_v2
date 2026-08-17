@@ -36,7 +36,7 @@ const Home = () => {
       <Experience />
       <ProjectsDetails_home />
       <p className="text-sm text-gray-400 text-center p-6">
-        © 2025 Vishmith Suranjaya. All Rights Reserved.
+        © 2026 Vishmith Suranjaya. All Rights Reserved.
       </p>
     </div>
   )
