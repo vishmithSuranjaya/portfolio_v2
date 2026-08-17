@@ -1,38 +1,58 @@
 import React, { useRef, useState } from "react";
 import emailjs from "emailjs-com";
 import toast, { Toaster } from "react-hot-toast";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const Email_form = () => {
   const form = useRef();
   const [status, setStatus] = useState("");
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
     setStatus("Sending...");
     const loadingToast = toast.loading("Sending message...");
 
-    emailjs
-      .sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-        form.current,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY // e.g. xKf5y_aBcD
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
+    if (!executeRecaptcha) {
+      toast.dismiss(loadingToast);
+      toast.error("reCAPTCHA not ready. Please try again.");
+      return;
+    }
+
+    try {
+      const token = await executeRecaptcha("contact_form");
+
+      // Add the token to the form data
+      const formData = new FormData(form.current);
+      formData.append("g-recaptcha-response", token);
+
+      emailjs
+        .sendForm(
+          import.meta.env.VITE_EMAILJS_SERVICE_ID,
+          import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+          form.current,
+          import.meta.env.VITE_EMAILJS_PUBLIC_KEY // e.g. xKf5y_aBcD
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
           setStatus("Message sent successfully!");
           form.current.reset();
           toast.dismiss(loadingToast); // remove loading
           toast.success("Message sent successfully!");
         },
         (error) => {
-          console.log(error.text);
-          setStatus("Failed to send message. Please try again later.");
-          toast.dismiss(loadingToast);
-          toast.error("Failed to send message. Please try again later.");
-        }
-      );
+            console.log(error.text);
+            setStatus("Failed to send message. Please try again later.");
+            toast.dismiss(loadingToast);
+            toast.error("Failed to send message. Please try again later.");
+          }
+        );
+    } catch (err) {
+      console.error(err);
+      toast.dismiss(loadingToast);
+      toast.error("reCAPTCHA verification failed.");
+    }
   };
 
   return (
