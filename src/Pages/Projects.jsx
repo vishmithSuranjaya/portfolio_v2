@@ -2,13 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async'
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
-import ProjectTile from '../Components/Tile/ProjectTile';
 import ProjectCard from '../Components/Firebase_Retreive/ProjectCard';
 import Navbar from '../Components/Navbar/Navbar'; // Assuming Navbar is used elsewhere
 
 const ProjectsDetails = ({ setLoading }) => {
   const [projects, setProjects] = useState([]);
-  const [selectedProject, setSelectedProject] = useState(null);
   const [error, setError] = useState(null);
   const [loadingState, setLoadingState] = useState(true); // local loading state for skeletons
 
@@ -35,19 +33,11 @@ const ProjectsDetails = ({ setLoading }) => {
     fetchProjects();
   }, [setLoading]);
 
-  const renderSkeleton = () => (
-    Array.from({ length: 6 }).map((_, idx) => (
-      <div
-        key={idx}
-        className="h-64 rounded-xl bg-gray-800 animate-pulse shadow-lg p-4 flex flex-col"
-      >
-        <div className="h-2/3 bg-gray-700 rounded-lg mb-4"></div>
-        <div className="flex-grow">
-          <div className="h-4 bg-gray-600 w-3/4 mb-2 rounded"></div>
-          <div className="h-3 bg-gray-600 w-2/3 rounded"></div>
-        </div>
-      </div>
-    ))
+  const renderLoadingAnimation = () => (
+    <div className="flex-grow flex flex-col justify-center items-center h-[60vh] space-y-4">
+      <div className="w-12 h-12 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin"></div>
+      <p className="text-yellow-400 font-semibold animate-pulse">Loading...</p>
+    </div>
   );
 
   if (error) return <p className="text-red-400 text-center mt-4">{error}</p>;
@@ -72,27 +62,19 @@ const ProjectsDetails = ({ setLoading }) => {
           "url": "${import.meta.env.VITE_SITE_URL || 'https://vishmithsuranjaya.dev'}/projects"
         }`}</script>
       </Helmet>
-      <main className="flex-grow p-5">
-        <div className="relative m-10">
-          {/* Grid of Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-            {loadingState
-              ? renderSkeleton()
-              : projects.map((project) => (
+      <main className="flex-grow p-5 flex flex-col justify-center">
+        <div className="relative mx-10 my-4 flex-grow flex flex-col justify-center">
+          {loadingState ? (
+            renderLoadingAnimation()
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+              {projects.map((project) => (
                 <ProjectCard
                   key={project.id}
                   project={project}
-                  onView={() => setSelectedProject(project)}
                 />
               ))}
-          </div>
-
-          {/* Modal Tile Component */}
-          {selectedProject && (
-            <ProjectTile
-              project={selectedProject}
-              onClose={() => setSelectedProject(null)}
-            />
+            </div>
           )}
         </div>
       </main>

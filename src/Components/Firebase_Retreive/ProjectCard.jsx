@@ -1,20 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ProjectCard = ({ project, onView }) => {
+const ProjectCard = ({ project }) => {
+  const image = project.image || project.media1;
+  const description = project.description || project.description1;
+  const github = project.github_link || project.github_url;
+
   return (
-    <article
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => { if (e.key === 'Enter') onView(project); }}
-      onClick={() => onView(project)}
-      className="group cursor-pointer bg-[#1e293b] rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col h-full"
+    <Link
+      to={`/projects/${project.id}`}
+      className="group bg-[#1e293b] rounded-xl overflow-hidden shadow-lg transform transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col h-full text-left decoration-none"
     >
       {/* Image */}
       <div className="h-44 md:h-56 w-full bg-gray-800 overflow-hidden">
-        {project.media1 ? (
+        {image ? (
           <img
-            src={project.media1}
+            src={image}
             alt={project.title || 'project image'}
             loading="lazy"
             className="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
@@ -28,7 +29,7 @@ const ProjectCard = ({ project, onView }) => {
       <div className="p-4 text-white flex flex-col gap-3 flex-grow">
         <div>
           <h3 className="text-lg font-semibold">{project.title}</h3>
-          <p className="text-sm text-gray-300 mt-1 line-clamp-2">{project.description1}</p>
+          <p className="text-sm text-gray-300 mt-1 line-clamp-2">{description}</p>
         </div>
 
         {/* Tech tags */}
@@ -45,17 +46,15 @@ const ProjectCard = ({ project, onView }) => {
 
         {/* Actions */}
         <div className="mt-auto flex items-center gap-3">
-          <button
-            onClick={(e) => { e.stopPropagation(); onView(project); }}
-            className="inline-block bg-yellow-400 text-[#0f172a] font-semibold py-2 px-4 rounded-full shadow hover:bg-yellow-300 transition duration-200 italic"
-            aria-label={`Open details for ${project.title}`}
+          <span
+            className="inline-block bg-yellow-400 text-[#0f172a] font-semibold py-2 px-4 rounded-full shadow hover:bg-yellow-300 transition duration-200 italic text-sm"
           >
             View
-          </button>
+          </span>
 
-          {project.github_url && (
+          {github && (
             <a
-              href={project.github_url}
+              href={github}
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
@@ -69,7 +68,7 @@ const ProjectCard = ({ project, onView }) => {
           )}
         </div>
       </div>
-    </article>
+    </Link>
   );
 };
 
