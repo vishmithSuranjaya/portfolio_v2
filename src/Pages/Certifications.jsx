@@ -34,37 +34,32 @@ const Certifications = ({ setLoading }) => {
     fetchCertifications();
   }, [setLoading]);
 
-  const renderSkeleton = () =>
-    Array.from({ length: 6 }).map((_, idx) => (
-      <div
-        key={idx}
-        className="h-64 rounded-xl bg-gray-800 animate-pulse shadow-lg p-4 flex flex-col" // Added p-4 and flex layout
-      >
-        <div className="h-2/3 bg-gray-700 rounded-lg mb-4"></div> {/* Adjusted for direct image, added mb-4 */}
-        <div className="flex-grow"> {/* Container for text */}
-          <div className="h-4 bg-gray-600 w-3/4 mb-2 rounded"></div>
-          <div className="h-3 bg-gray-600 w-2/3 rounded"></div>
-        </div>
-      </div>
-    ));
+  const renderLoadingAnimation = () => (
+    <div className="flex-grow flex flex-col justify-center items-center h-[60vh] space-y-4">
+      <div className="w-12 h-12 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin"></div>
+      <p className="text-yellow-400 font-semibold animate-pulse">Loading...</p>
+    </div>
+  );
 
   if (error) return <p className="text-red-400 text-center mt-4">{error}</p>;
 
   return (
     <div className="bg-[#0f172a] min-h-screen flex flex-col">
-      <div className="flex-grow p-5">
-        <div className="relative m-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 items-stretch">
-            {loadingState
-              ? renderSkeleton()
-              : certifications.map((certification) => (
-                  <CertificationCard
-                    key={certification.id}
-                    certification={certification}
-                    onView={(c) => setSelectedCertification(c)}
-                  />
-                ))}
-          </div>
+      <div className="flex-grow p-5 flex flex-col justify-center">
+        <div className="relative mx-10 my-4 flex-grow flex flex-col justify-center">
+          {loadingState ? (
+            renderLoadingAnimation()
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 items-stretch">
+              {certifications.map((certification) => (
+                <CertificationCard
+                  key={certification.id}
+                  certification={certification}
+                  onView={(c) => setSelectedCertification(c)}
+                />
+              ))}
+            </div>
+          )}
 
           {/* Modal Tile Component (simplified, assuming 'ProjectTile' isn't needed here) */}
           {selectedCertification && (

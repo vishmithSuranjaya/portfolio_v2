@@ -5,6 +5,7 @@ import './App.css'
 import { BrowserRouter, Route, Routes, Outlet } from 'react-router-dom'
 import Home from './Pages/Home'
 import Projects from './Pages/Projects'
+import ProjectDetail from './Pages/ProjectDetail'
 import Certifications from './Pages/Certifications'
 import Contact from './Pages/Contact'
 import Navbar from './Components/Navbar/Navbar'
@@ -32,6 +33,7 @@ function App() {
           <Route element={<PublicLayout />}>
             <Route path={'/'} element={<Home />} />
             <Route path={'/projects'} element={<Projects />} />
+            <Route path={'/projects/:id'} element={<ProjectDetail />} />
             <Route path={'/certifications'} element={<Certifications />}/>
             <Route path={'/contact'} element={<Contact />} />
           </Route>

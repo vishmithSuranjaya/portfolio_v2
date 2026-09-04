@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ProjectTile from '../Tile/ProjectTile';
 import { getProjects } from './getProjects';
 import ProjectCard from './ProjectCard';
 
@@ -14,7 +13,6 @@ interface Project {
 
 const ProjectsDetails = ({ setLoading }: { setLoading?: (loading: boolean) => void }) => {
   const [projects, setProjects] = useState<Project[]>([]);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loadingState, setLoadingState] = useState(true); // local loading for skeleton
 
@@ -67,7 +65,6 @@ const ProjectsDetails = ({ setLoading }: { setLoading?: (loading: boolean) => vo
                 <ProjectCard
                   key={project.id}
                   project={project}
-                  onView={() => setSelectedProject(project)}
                 />
               ))}
         </div>
@@ -81,13 +78,6 @@ const ProjectsDetails = ({ setLoading }: { setLoading?: (loading: boolean) => vo
             View All Projects →
           </Link>
         </div>
-
-        {selectedProject && (
-          <ProjectTile
-            project={selectedProject}
-            onClose={() => setSelectedProject(null)}
-          />
-        )}
       </div>
     </div>
   );
